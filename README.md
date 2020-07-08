@@ -37,3 +37,8 @@ Este proyecto está bajo la licencia del HONOR.
 * Invita una cerveza 🍺 o un café ☕ a alguien del equipo. 
 * Da las gracias públicamente 🤓.
 * Nunca pares de aprender
+
+
+##Recordatorios.....
+
+No funciona el register, pues no se por que son las 2:10 osea i dont fucking not me wua dolmil
