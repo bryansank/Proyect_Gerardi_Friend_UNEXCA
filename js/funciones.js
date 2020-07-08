@@ -1,4 +1,23 @@
-  function alerta(){ 
+function showDateNow(){
+
+	var func = new Date();
+
+	let Months = new Array(
+		"Enero","Febrero","Marzo",
+		"Abril","Mayo","Junio",
+		"Julio","Agosto","Septiembre",
+		"Octubre","Noviembre","Diciembre"
+	);
+
+	document.write(
+		"<div id='contentDateNow' style='width: auto;height: auto;border: 1px solid red;text-align: center;font-size: 24px;font-weight: 700;'>"
+			+ func.getDate() + " de " + Months[func.getMonth()] + " de " + func.getFullYear() +
+		"</div>"
+	); 
+};
+ 
+ 
+ function alerta(){ 
   	var nombreC=document.getElementById('NombreCliente').value;
   	var apellidoc=document.getElementById('ApellidoCliente').value;
   	alert (nombreC + "  "+apellidoc+ "  Gracias por los datos suministrados");
