@@ -40,38 +40,47 @@ class userClass{
 
     }
 
-    /* User Registration */
-    // public function userRegistration($username,$password,$email,$name){
-    //     try{
-    //         $db = getDB();
-    //         $st = $db->prepare("SELECT uid FROM users WHERE username=:username OR email=:email"); 
-    //         $st->bindParam("username", $username,PDO::PARAM_STR);
-    //         $st->bindParam("email", $email,PDO::PARAM_STR);
-    //         $st->execute();
-    //         $count=$st->rowCount();
-    //         if($count<1)
-    //         {
-    //         $stmt = $db->prepare("INSERT INTO users(username,password,email,name) VALUES (:username,:hash_password,:email,:name)");
-    //         $stmt->bindParam("username", $username,PDO::PARAM_STR) ;
-    //         $hash_password= hash('sha256', $password); //Password encryption
-    //         $stmt->bindParam("hash_password", $hash_password,PDO::PARAM_STR) ;
-    //         $stmt->bindParam("email", $email,PDO::PARAM_STR) ;
-    //         $stmt->bindParam("name", $name,PDO::PARAM_STR) ;
-    //         $stmt->execute();
-    //         $uid=$db->lastInsertId(); // Last inserted row id
-    //         $db = null;
-    //         $_SESSION['uid']=$uid;
-    //         return true;
-    //         }
-    //         else
-    //         {
-    //         $db = null;
-    //         return false;
-    //         }
-    //     }catch(PDOException $e) {
-    //         echo '{"error":{"text":'. $e->getMessage() .'}}'; 
-    //     }
-    // }
+    /* User Registro */
+    public function userRegistration($UserNameReg,$PasswordReg,$EmailReg,$NameReg){
+        try{
+            $db = getDB();
+            $query = $db->prepare("SELECT uid FROM users WHERE username=:UserNameReg OR email=:EmailReg"); 
+            $query->bindParam("UserNameReg", $UserNameReg,PDO::PARAM_STR);
+            $query->bindParam("EmailReg", $EmailReg,PDO::PARAM_STR);
+            $query->execute();
+            $count=$query->rowCount();
+            echo "no";
+
+            if($count >= 1){
+                $db = null;
+                echo"perraaaaa";
+                return false;
+            }
+
+            if($count<1){
+                //Si llego menos de 1 fila afectada, fue que no encontr ni email ni username igual a la db entonces crealo
+                $queryInsert = $db->prepare("INSERT INTO users(username,password,email,name) VALUES (:UserNameReg,:hash_password,:EmailReg,:NameReg)");
+                $queryInsert->bindParam("UserNameReg", $UserNameReg,PDO::PARAM_STR) ;
+                $hash_password= hash('sha256', $PasswordReg); //Password encriptado
+                $queryInsert->bindParam("hash_password", $hash_password,PDO::PARAM_STR) ;
+                $queryInsert->bindParam("EmailReg", $EmailReg,PDO::PARAM_STR) ;
+                $queryInsert->bindParam("NameReg", $NameReg,PDO::PARAM_STR) ;
+                $queryInsert->execute();
+                echo "EJECUTESEEE";
+                $uid=$db->lastInsertId(); // funcion para ver cual es el ultimo Id de la ultima fila insertada
+                $db = null;
+                $_SESSION['uid'] = $uid;
+
+                return true;
+            }
+            else{
+                $db = null;
+                return false;
+            }
+        }catch(PDOException $e) {
+            echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+        }
+    }
 
     /* User Details */
     public function userDetails($uid){

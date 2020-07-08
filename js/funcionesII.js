@@ -1,4 +1,5 @@
-  function alerta(){ 
+/*
+function alerta(){ 
   	alert ("  Gracias por los datos suministrados");
     
 }
@@ -20,3 +21,4 @@ function upperCasea() {
    var a=document.getElementById("sugerencia").value
    document.getElementById("sugerencia").value=a.toUpperCase()
 } 
+*/

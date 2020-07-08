@@ -1,4 +1,4 @@
-function showDateNow(){
+let showDateNow = function(){
 
 	var func = new Date();
 
@@ -15,8 +15,21 @@ function showDateNow(){
 		"</div>"
 	); 
 };
+
+let notLoginProduct = function(){
+	console.log("funciona");
+	alert('Usted debe estar registrado para ver nuestros productos.');
+};
+
+function load() { 
+	let btnLinkProduct = document.getElementById('linkProduct'); 
+	btnLinkProduct.addEventListener("click", notLoginProduct, false); 
+} 
+  
+document.addEventListener("DOMContentLoaded", load, false);
  
  
+  /*
  function alerta(){ 
   	var nombreC=document.getElementById('NombreCliente').value;
   	var apellidoc=document.getElementById('ApellidoCliente').value;
@@ -76,3 +89,4 @@ function upperCasec() {
    document.getElementById("ubicacion").value=b.toUpperCase()
 } 
 
+*/
