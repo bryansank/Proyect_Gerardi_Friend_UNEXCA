@@ -45,6 +45,20 @@
 		}
     }
 
+    if(!empty($_POST['deleteProduct'])){
+        $id = trim($_POST['deleteId']);
+        if($id > 0){
+            $objProduct = $productClass->deleteProduct($id);
+            if($objProduct){
+				echo "<div><h2 style='border:1px solid green;'>Eliminado producto con Exito </h2></div>";
+			}else{
+				echo "<div> <h2 style='border:1px solid red;'>No se pudo eliminar comuníquese con el administrador</h2> </div>";
+			}
+		}else{
+            echo "<div> <h2 style='border:1px solid red;'>Error</h2> </div>";
+		}
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -107,13 +121,11 @@
                         <td>". $result -> price_product ."</td>
                         <td>
                             <form method='POST' action=''>
-                                <input type='hidden' name='id' value=''>
-                                <button name='editar'>Editar</button>
+                                <td><a href='edit.php?id=". $result-> id."'><font color='red'>Editar</font></a></td>
                             </form>
-                        </td>
-                            
+                        </td>  
                         <td>
-                            <form  onsubmit=\"return confirm('Realmente desea eliminar el registro?');\" method='POST' action=''>
+                            <form method='POST' action=''>
                                 <td><a href='delete.php?id=". $result-> id."'><font color='red'>Eliminar</font></a></td>
                             </form>
                         </td>
