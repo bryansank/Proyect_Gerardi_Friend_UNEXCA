@@ -40,6 +40,38 @@ class userClass{
 
     }
 
+    /* User Login */
+    public function userLoginAdmin($UserAndEmailAdmin,$PasswordAdmin){
+        try{
+            $db = getDB();
+            $query = $db->prepare("SELECT * FROM admins WHERE (username=:UserAndEmailAdmin OR email=:UserAndEmailAdmin) AND password=:PasswordAdmin"); 
+            $query->bindParam("UserAndEmailAdmin", $UserAndEmailAdmin,PDO::PARAM_STR) ;
+            $query->bindParam("PasswordAdmin", $PasswordAdmin,PDO::PARAM_STR) ;
+            $query->execute();
+            $count=$query->rowCount();
+            //$data=$query->fetch(PDO::FETCH_OBJ); 
+            //$data=$query->fetch(PDO::FETCH_OBJ);
+            
+
+            if($count){
+                $data=$query->fetch(PDO::FETCH_OBJ);
+                $db = null;
+
+                //$_SESSION['uid'] = $data->uid; 
+                $_SESSION['username'] = $data->username; 
+                return $data;
+            }else{
+                $db = null;
+                return false;
+            } 
+        }
+        catch(PDOException $e) {
+            
+            //echo '{"error":{"text":'. $e->getMessage() .'}}';
+        }
+
+    }
+
     /* User Registro */
     public function userRegistration($UserNameReg,$PasswordReg,$EmailReg,$NameReg){
         try{
@@ -66,7 +98,7 @@ class userClass{
                 $queryInsert->bindParam("EmailReg", $EmailReg,PDO::PARAM_STR) ;
                 $queryInsert->bindParam("NameReg", $NameReg,PDO::PARAM_STR) ;
                 $queryInsert->execute();
-                echo "EJECUTESEEE";
+                //echo "EJECUTESEEE";
                 $uid=$db->lastInsertId(); // funcion para ver cual es el ultimo Id de la ultima fila insertada
                 $db = null;
                 $_SESSION['uid'] = $uid;
@@ -83,18 +115,68 @@ class userClass{
     }
 
     /* User Details */
-    public function userDetails($uid){
+    public function userDetails($username){
         try{
             $db = getDB();
-            $stmt = $db->prepare("SELECT email,username,name FROM users WHERE uid=:uid"); 
-            $stmt->bindParam("uid", $uid,PDO::PARAM_INT);
-            $stmt->execute();
-            $data = $stmt->fetch(PDO::FETCH_OBJ); //User data
-            return $data;
+            //$stmt = $db->prepare("SELECT email,username,name FROM users WHERE uid=:uid");
+            $query = $db->prepare("SELECT name FROM users WHERE username=:username");
+            $queryAdmin = $db->prepare("SELECT name FROM admins WHERE username=:username");
+            $query->bindParam("username", $username,PDO::PARAM_STR);
+            $queryAdmin->bindParam("username", $username,PDO::PARAM_STR);
+            $query->execute();
+            $queryAdmin->execute();
+            $count = $query->rowCount();
+            $countAdmin = $queryAdmin->rowCount();
+            if($count){
+                $data = $query->fetch(PDO::FETCH_OBJ); //User data
+                $db = null;
+                return $data;
+            }if($countAdmin){
+                $data = $queryAdmin->fetch(PDO::FETCH_OBJ); //User data
+                $db = null;
+                return $data;
+            }else{
+                return false;
+            }
+            
+            
         }catch(PDOException $e) {
             echo '{"error":{"text":'. $e->getMessage() .'}}';
         }
     }
 }
+//--include("../config.php");
+//--$obj = new userClass();
+//--$hi = $obj->userLoginAdmin("admin","123456");
+//--$equis = $_SESSION['username'];
+//--$hao = $obj->userDetails($equis);
+//if($hao){print_r($hao);}else{echo "no funciono";}
+//--echo $hao->name;
+//
+//if($hi){print_r($hi);}else{echo "falso";}
+
+//if($obj){echo "bien";}else{echo"no";}
+
+/*if($obj){ 
+    foreach($obj as $result) { 
+        echo "
+        <tr>
+            <td>". $result -> id ."</td>
+            <td>". $result -> name_product ."</td>
+            <td>". $result -> type_product ."</td>
+            <td>". $result -> price_product ."</td>
+        </tr>
+        ";
+    }
+}else{
+    echo "<tr>
+            <td>"."Verifique la conexion a internet"."</td>
+            <td>"."Verifique la conexion a internet"."</td>
+            <td>"."Verifique la conexion a internet"."</td>
+            <td>"."Verifique la conexion a internet"."</td>
+            <td>"."Verifique la conexion a internet"."</td>
+            <td>"."Verifique la conexion a internet"."</td>
+        </tr>";
+}*/
 
 ?>
