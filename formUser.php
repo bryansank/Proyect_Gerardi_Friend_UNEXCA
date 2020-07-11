@@ -19,6 +19,7 @@
 
 	$errorMsgReg='';
 	$errorMsgLogin='';
+	$errorMsgLoginAdmin = '';
 
 	/* Entrar Form */
 	if (!empty($_POST['loginSubmit'])) {//Aqui validamos si se preciono el boton de "Entrar"
@@ -45,6 +46,36 @@
 			}
 			else{
 				$errorMsgLogin="Por favor, revisa el formulario.";
+				//echo "eeeeey entro en else";
+			}
+		}
+	}
+
+	/* Entrar Admin Form */
+	if (!empty($_POST['loginSubmitAdmin'])) {//Aqui validamos si se preciono el boton de "Entrar"
+		//Si es empty lo que llega por post entonces no se preciono asi que retorna true, aqui validamos si llega
+		//false, ya que preguntamos lo contrario a vacio osea !empty
+
+		$UserAndEmailAdmin=$_POST['UserAndEmailAdmin'];//Aqui asiganmos el valor del atributo de php "name='UserAndEmail'"
+		$PasswordAdmin=$_POST['PasswordAdmin'];
+
+		if( strlen(trim($UserAndEmailAdmin)) > 1 && strlen(trim($PasswordAdmin))>1 ){
+			//Aqui le hacemos strlen funcion que devuelve 0 si la cadena no tiene nada 
+			//y trim elimina espacios al final de la cadena ademas de que preguntamos si el valor
+			//de strlen es mayor a 1 dando asi que no esta vacia...
+
+			$objAdmin = $userClass->userLoginAdmin($UserAndEmailAdmin,$PasswordAdmin);
+			//Aqui designamos a objUser la clase de UserClass usando el metodo userLogin, le pasamos
+			//como parametros el usuario o el email y la contraseña para verificar si existe 
+			//en la base de datos para hacerle login al usuario.
+
+			if($objAdmin){
+				$url = BASE_URL.'homeAdmin.php';
+				header("Location: $url"); // Aqui retornamos a las personas a la vista Home.php
+				//echo "eeeeey funciono";
+			}
+			else{
+				$errorMsgLoginAdmin="Por favor, revisa el formulario.";
 				//echo "eeeeey entro en else";
 			}
 		}
@@ -116,6 +147,22 @@
 		</form>
 	</div>
 <!-- FIN DE REGISTER -->
+
+<!-- Codigo del form para Login -->
+
+	<div id="container-login">
+		<h3>Administrador</h3>
+		<form method="post" action="" name="login">
+			<label for="inputUserAndEmailAdmin">Usuario o Correo:</label>
+			<input id="inputUserAndEmailAdmin" type="text" name="UserAndEmailAdmin" />
+			<label for="inputPasswordAdmin">Contraseña:</label>
+			<input id="inputPasswordAdmin" type="password" name="PasswordAdmin" />
+			<div class="errorMsg"><?php echo $errorMsgLoginAdmin; ?></div>
+			<input id="btnLoginSubmitAdmin" type="submit" class="button" name="loginSubmitAdmin" value="Entrar" />
+		</form>
+	</div>
+	
+<!-- FIN DE LOGIN -->
 
 </body>
 </html>

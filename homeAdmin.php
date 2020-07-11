@@ -1,5 +1,13 @@
+<?php 
+
+include('config.php');
+include('session.php');
+
+$userDetails=$userClass->userDetails($session_uid);
+
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,14 +17,12 @@
 	<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
 <script type="text/javascript">
     showDateNow();
     
     document.write("<font face=optima size=2>Last Updated (JS) :"+document.lastModified+"</font>");
-    
 </script>
-<?php session_start(); unset($_SESSION['uid']); session_destroy(); ?>
+
 <!--Inicio de Div principal-->		       
 <div id="principal">
     <header class="encabezado">
@@ -43,7 +49,7 @@
         <article>
             <h1> Delina Carter nace del placer que nos da llevar la moda a esos pequeños detalles, no importa el diseño, el color, o el material, si tú lo quieres nosotros lo conseguiremos</h1>
         </article>
-        <!-- Menu de navegacion -->
+
         <nav class="menu">
             <table Bgcolor="FFC300"cellpadding="10" cellspacing="10" align="center" border="4">
             <tr>
@@ -58,10 +64,10 @@
                             <a href="https://www.instagram.com/bygemadelina/?hl=es-la" target="blank">Instagram</a>
                         </li>
                     </td>
-                    <!--boton para mostrar mensaje js-->
+    
                     <td>
                         <li>
-                            <a id="linkProduct" href="">Productos</a>
+                            <a href="productsAdmin.php">Productos</a>
                         </li>
                     </td>
         
@@ -70,10 +76,18 @@
                             <a>Servicio a domicilio</a>
                         </li>
                     </td>
-                    <!--opcion de usuario-->
+        
                     <td>
                         <li>
-                            <a href="formUser.php">Usuario</a>
+                            <a style="font-size: 22px;color: black;font-weight: 700;">
+                                Hola <?php echo $userDetails->name; ?>
+                            </a>
+                        </li>
+                    </td>
+
+                    <td>
+                        <li>
+                            <a href="logout.php">Cerrar Sesion</a>
                         </li>
                     </td>
                 </ul>
@@ -136,6 +150,7 @@
         document.write("Nombre y versión del navegador: " + navigator.userAgent);
     </script>
 </footer>
+
 <!--FIN de Footer-->		       
 </body>
 </html>

@@ -1,8 +1,8 @@
 <?php  
 
-if(!empty($_SESSION['uid'])) {
+if(!empty($_SESSION['username'])) {
     
-    $session_uid=$_SESSION['uid'];
+    $session_uid=$_SESSION['username'];
 
     include('class/userClass.php');
     include('class/productClass.php');
@@ -12,6 +12,8 @@ if(!empty($_SESSION['uid'])) {
 }
 
 if(empty($session_uid)) {
+    unset($_SESSION['username']);
+    session_destroy();
     $url=BASE_URL.'index.php';
     header("Location: $url");
 }

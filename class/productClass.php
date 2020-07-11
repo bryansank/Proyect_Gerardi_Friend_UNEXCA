@@ -42,7 +42,21 @@
             catch(PDOException $e) {
                 echo '{"error":{"text":'. $e->getMessage() .'}}';
             }
-        } 
+        }
+
+        public function deleteProduct($id){
+            ////////////// Actualizar la tabla /////////
+            $db = getDB();
+            $query = $db->prepare("DELETE FROM product WHERE id=:id");
+            $query -> bindParam(':id', $id, PDO::PARAM_INT);
+            $query->execute();
+            $count = $query->rowCount();
+            if($count){
+                return true;
+            }else{
+                return false;
+            }
+        }
 
     }
 ?>

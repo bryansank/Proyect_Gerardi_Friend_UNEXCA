@@ -9,7 +9,7 @@ class userClass{
             $hash_password= hash('sha256', $Password);
             //Aqui encriptamos la contraseña con sha256, puedes quitarselo cuando quieras, pero tienes
             //que saber que si se encripto en la db y luego la desencriptas no podras entrar, tienes que registrarte...
-            $query = $db->prepare("SELECT uid FROM users WHERE (username=:UserAndEmail or email=:UserAndEmail) AND password=:hash_password"); 
+            $query = $db->prepare("SELECT name,username FROM users WHERE (username=:UserAndEmail or email=:UserAndEmail) AND password=:hash_password"); 
             //con $query ejecutamos la consulta a la db...
             $query->bindParam("UserAndEmail", $UserAndEmail,PDO::PARAM_STR) ;
             $query->bindParam("hash_password", $hash_password,PDO::PARAM_STR) ;
@@ -19,19 +19,18 @@ class userClass{
             $count=$query->rowCount();
             //Aqui asignamos a cout el metodo de rowCount que devuelve si algo fue afectado, quiere decir
             //que si el query fallo o sucedio algo inesperado devuelve error
-            $data=$query->fetch(PDO::FETCH_OBJ);
-            //Aqui trae el objeto de la consulta, en este caso, trae id, nombre, contraseña, usuario y demas
-            $db = null;
-            //Hacemos el db nulo para limpiar todo lo que tiene y no crear basura xd
-
+            
             if($count){
-                $_SESSION['uid'] = $data->uid; 
-                // Aqui guardamos la seccion de la persona que este logeandose
-                //tomamos del objeto data, el atributo id
+                $data=$query->fetch(PDO::FETCH_OBJ);
+                //Aqui trae el objeto de la consulta, en este caso, trae id, nombre, contraseña, usuario y demas
+                $_SESSION['username'] = $data->username; 
+                $db = null;
+                //Hacemos el db nulo para limpiar todo lo que tiene y no crear basura xd
                 return true;
             }else{
+                $db = null;
                 return false;
-            } 
+            }
         }
         catch(PDOException $e) {
             
