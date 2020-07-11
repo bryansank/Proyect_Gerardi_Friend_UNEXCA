@@ -43,7 +43,7 @@
         <article>
             <h1> Delina Carter nace del placer que nos da llevar la moda a esos pequeños detalles, no importa el diseño, el color, o el material, si tú lo quieres nosotros lo conseguiremos</h1>
         </article>
-
+        <!-- Menu de navegacion -->
         <nav class="menu">
             <table Bgcolor="FFC300"cellpadding="10" cellspacing="10" align="center" border="4">
             <tr>
@@ -58,7 +58,7 @@
                             <a href="https://www.instagram.com/bygemadelina/?hl=es-la" target="blank">Instagram</a>
                         </li>
                     </td>
-    
+                    <!--boton para mostrar mensaje js-->
                     <td>
                         <li>
                             <a id="linkProduct" href="">Productos</a>
@@ -70,7 +70,7 @@
                             <a>Servicio a domicilio</a>
                         </li>
                     </td>
-        
+                    <!--opcion de usuario-->
                     <td>
                         <li>
                             <a href="formUser.php">Usuario</a>

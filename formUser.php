@@ -41,11 +41,11 @@
 			if($objUser){
 				$url = BASE_URL.'home.php';
 				header("Location: $url"); // Aqui retornamos a las personas a la vista Home.php
-				echo "eeeeey";
+				//echo "eeeeey funciono";
 			}
 			else{
 				$errorMsgLogin="Por favor, revisa el formulario.";
-				//echo "eeeeey chabaleee";
+				//echo "eeeeey entro en else";
 			}
 		}
 	}

@@ -79,7 +79,9 @@ $userDetails=$userClass->userDetails($session_uid);
         
                     <td>
                         <li>
-                            <a>Hola <?php echo $userDetails->name; ?></a>
+                            <a style="font-size: 22px;color: black;font-weight: 700;">
+                                Hola <?php echo $userDetails->name; ?>
+                            </a>
                         </li>
                     </td>
 
