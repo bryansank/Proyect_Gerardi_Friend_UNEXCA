@@ -40,5 +40,8 @@ Este proyecto está bajo la licencia del HONOR.
 
 
 ##Recordatorios.....
+//Update Delete de productos  
+Actulizacion de 7:40pm a 9:48pm 
 
-imprimir los objetos detalladamente en la vista... 
+//mejora en la vista products.php
+//-Create Read de productos listo

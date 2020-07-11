@@ -49,7 +49,7 @@ class userClass{
             $query->bindParam("EmailReg", $EmailReg,PDO::PARAM_STR);
             $query->execute();
             $count=$query->rowCount();
-            echo "no";
+            //echo "no";
 
             if($count >= 1){
                 $db = null;
