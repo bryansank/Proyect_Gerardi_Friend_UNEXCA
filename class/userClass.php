@@ -80,33 +80,25 @@ class userClass{
             $query->bindParam("EmailReg", $EmailReg,PDO::PARAM_STR);
             $query->execute();
             $count=$query->rowCount();
-            //echo "no";
 
             if($count >= 1){
                 $db = null;
-                echo"perraaaaa";
                 return false;
-            }
-
-            if($count<1){
-                //Si llego menos de 1 fila afectada, fue que no encontr ni email ni username igual a la db entonces crealo
+            }else{
                 $queryInsert = $db->prepare("INSERT INTO users(username,password,email,name) VALUES (:UserNameReg,:hash_password,:EmailReg,:NameReg)");
-                $queryInsert->bindParam("UserNameReg", $UserNameReg,PDO::PARAM_STR) ;
+
                 $hash_password= hash('sha256', $PasswordReg); //Password encriptado
-                $queryInsert->bindParam("hash_password", $hash_password,PDO::PARAM_STR) ;
-                $queryInsert->bindParam("EmailReg", $EmailReg,PDO::PARAM_STR) ;
-                $queryInsert->bindParam("NameReg", $NameReg,PDO::PARAM_STR) ;
+
+                $queryInsert->bindParam("UserNameReg", $UserNameReg,PDO::PARAM_STR);
+                $queryInsert->bindParam("hash_password", $hash_password,PDO::PARAM_STR);
+                $queryInsert->bindParam("EmailReg", $EmailReg,PDO::PARAM_STR);
+                $queryInsert->bindParam("NameReg", $NameReg,PDO::PARAM_STR);
                 $queryInsert->execute();
-                //echo "EJECUTESEEE";
-                $uid=$db->lastInsertId(); // funcion para ver cual es el ultimo Id de la ultima fila insertada
+
                 $db = null;
-                $_SESSION['uid'] = $uid;
+                $_SESSION['username'] = $UserNameReg;
 
                 return true;
-            }
-            else{
-                $db = null;
-                return false;
             }
         }catch(PDOException $e) {
             echo '{"error":{"text":'. $e->getMessage() .'}}'; 

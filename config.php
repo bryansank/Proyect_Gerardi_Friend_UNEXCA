@@ -6,7 +6,9 @@ define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 define('DB_DATABASE', 'proyecto_db');
-define("BASE_URL", "http://localhost/gm/"); // Eg. http://yourwebsite.com
+define("BASE_URL", "http://localhost/CARPETA_RAIZ_DE_TU_PROYECTO/"); // Recuerda cambiar la carpeta raiz de tu proyecto y/o 
+//si quieras empezarlo a usar con  tu dominio en vez de  Eg.: "http://localhost/CARPETA_RAIZ_DE_TU_PROYECTO/" Será --> 
+//http://yourwebsite.com
 
 
 function getDB() 

@@ -40,5 +40,4 @@ Este proyecto está bajo la licencia del HONOR.
 
 
 ##Recordatorios.....
-//Update productos  
-Actulizacion de 12:00pm a 3:17pm
+Revisar el archivo Cofig para cambiar los accesos a su domino y/o carpeta raiz de localhost.
