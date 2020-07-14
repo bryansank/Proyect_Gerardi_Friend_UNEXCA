@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-07-2020 a las 22:09:50
+-- Tiempo de generación: 14-07-2020 a las 21:41:27
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.4.7
 
@@ -89,7 +89,18 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`uid`, `username`, `password`, `email`, `name`) VALUES
-(1, 'gera', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'gera@gmail.com', 'gera')
+(1, 'bryansank', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'bryansan@gmai.com', 'Bryan'),
+(2, 'key', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'bryankey@gmail.com', 'key'),
+(3, 'isabel', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'isabel@test.com', 'isabel'),
+(4, 'yaru', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'yaru@gmail.com', 'yaru'),
+(5, 'gera', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'gera@gmail.com', 'gera'),
+(6, 'nicol', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'nicol@gmail.com', 'nicol'),
+(7, 'niki', '481f6cc0511143ccdd7e2d1b1b94faf0a700a8b49cd13922a70b5ae28acaa8c5', 'niki@gmail.com', 'nicol'),
+(8, 'chao', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'chao@gmail.com', 'chao'),
+(9, 'wepa', 'wepa', 'wepa', 'wepa'),
+(10, 'yamile', '62647073ceced0a7acfc6ad486133709483bdb90394ce7abee07527adfca2e43', 'yamile@gmail.com', 'yamile'),
+(11, 'holaa', 'c6c716366a3fc52c308077db6a5a2abf18c276054c04cb67c3253b0ad89a6e18', 'holaa@gmail.com', 'holaa'),
+(12, 'madre', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'madre@gmail.com', 'madre');
 
 --
 -- Índices para tablas volcadas
@@ -133,7 +144,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
